@@ -28,13 +28,12 @@ func parse(encodingStr: String) -> Encoding {
   var encoding: uint64 = 0x0
   for nibbleStr in revEncodingSplit {
     let nibbleArray = nibbleStr.trimmingCharacters(in: .whitespaces).split(separator: " ")
-    let trimmed = nibbleArray.count > 0 ? nibbleArray[0] : ""
     
-    if trimmed.count != 4 || !trimmed.hasSuffix("x0") {
+    if nibbleArray.count < 1 || nibbleArray[0].count != 4 || !nibbleArray[0].hasSuffix("x0") {
       break
     }
 
-    if let nibble = uint64(String(trimmed.split(separator: "x")[0].reversed()), radix: 16) {
+    if let nibble = uint64(String(nibbleArray[0].split(separator: "x")[0].reversed()), radix: 16) {
       encoding = (encoding << 8) | nibble
       continue
     }
