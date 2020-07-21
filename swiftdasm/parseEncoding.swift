@@ -9,21 +9,20 @@ struct Instruction {
 }
 
 func parse(encodingStr: String) -> Encoding {
-  var mutableEncodingStr = encodingStr
   
-  let label = "encoding: "
-  if mutableEncodingStr.contains(label) {
-    let cstr = mutableEncodingStr.cString(using: .ascii)
-    let trim = strstr(cstr, label)
-    let clip = trim! + strlen(label)
-    mutableEncodingStr = String(cString: clip)
-  }
-    
-  mutableEncodingStr = String(mutableEncodingStr.reversed())
-  mutableEncodingStr = mutableEncodingStr.replacingOccurrences(of: "[", with: " ")
-  mutableEncodingStr = mutableEncodingStr.replacingOccurrences(of: "]", with: " ")
-  
-  let revEncodingSplit = mutableEncodingStr.split(separator: ",")
+  let revEncodingSplit = String(
+  { (encoding: String) -> String in
+    if let range = encoding.range(of: "encoding: ") {
+      return String(encoding[range.upperBound...])
+    } else {
+      return encoding
+    }
+  }(encodingStr)
+  .replacingOccurrences(of: "[", with: " ")
+  .replacingOccurrences(of: "]", with: " ")
+  .reversed())
+  .split(separator: ",")
+
   assert(revEncodingSplit.count <= 8, "Expected encoding string no larger than 64-bits")
 
   var encoding: uint64 = 0x0
