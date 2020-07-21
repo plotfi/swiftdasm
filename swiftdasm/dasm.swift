@@ -4,10 +4,12 @@ func udfDecode(Encoding: Encoding) -> Instruction? {
   return Instruction(Opcode: "UDF")
 }
 
-func pcrelDecode(Encoding: Encoding) -> Instruction? {
-  return Instruction(Opcode: "FALLBACK_PCRel")
-}
-
-func dpDecode(Encoding: Encoding) -> Instruction? {
-  return Instruction(Opcode: "FALLBACK_DATAPROC")
+func fallbackDecode(encoding: Encoding) -> Instruction? {
+  for pattern in AArch64Patterns {
+    if matchEncoding(Pattern: pattern, Encoding: encoding) {
+      return Instruction(Opcode: pattern.Prefix)
+    }
+  }
+  
+  return nil
 }

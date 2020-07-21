@@ -8,7 +8,7 @@ struct Instruction {
   var Opcode: String
 }
 
-func parse(encodingStr: String) -> Encoding {
+func parse(encodingStr: String) -> Encoding? {
   
   let revEncodingSplit = String(
   { (encoding: String) -> String in
@@ -18,28 +18,30 @@ func parse(encodingStr: String) -> Encoding {
       return encoding
     }
   }(encodingStr)
-  .replacingOccurrences(of: "[", with: " ")
+  .replacingOccurrences(of: "[", with: ",")
   .replacingOccurrences(of: "]", with: " ")
   .reversed())
+  .trimmingCharacters(in: .whitespaces)
+  .replacingOccurrences(of: " ", with: "")
+  .replacingOccurrences(of: "x0", with: "")
   .split(separator: ",")
 
-  assert(revEncodingSplit.count <= 8, "Expected encoding string no larger than 64-bits")
+  let totalBits = revEncodingSplit.map({ $0.count }).reduce(0, +) * 4
+  if totalBits != 32 || revEncodingSplit.count != 4 {
+    return nil
+  }
 
   var encoding: uint64 = 0x0
   for nibbleStr in revEncodingSplit {
-    let nibbleArray = nibbleStr.trimmingCharacters(in: .whitespaces).split(separator: " ")
-    
-    if nibbleArray.count < 1 || nibbleArray[0].count != 4 || !nibbleArray[0].hasSuffix("x0") {
-      break
-    }
-
-    if let nibble = uint64(String(nibbleArray[0].split(separator: "x")[0].reversed()), radix: 16) {
+    if let nibble = uint64(String(nibbleStr.split(separator: "x")[0].reversed()), radix: 16) {
       encoding = (encoding << 8) | nibble
       continue
     }
 
-    assert(false, "Fail!")
+    return nil
   }
-    
+
+  print("Reverse Encoding Split: \(revEncodingSplit)")
+  print("The Fucking encoding: \(String(encoding, radix: 16))")
   return Encoding(Encodings: [encoding])
 }
