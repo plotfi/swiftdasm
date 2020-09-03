@@ -1,7 +1,7 @@
 import Foundation
 
 struct Encoding {
-  var Encodings : [uint64];
+  var Encodings : [UInt64];
 }
 
 struct Instruction {
@@ -31,9 +31,9 @@ func parse(encodingStr: String) -> Encoding? {
     return nil
   }
 
-  var encoding: uint64 = 0x0
+  var encoding: UInt64 = 0x0
   for nibbleStr in revEncodingSplit {
-    if let nibble = uint64(String(nibbleStr.split(separator: "x")[0].reversed()), radix: 16) {
+    if let nibble = UInt64(String(nibbleStr.split(separator: "x")[0].reversed()), radix: 16) {
       encoding = (encoding << 8) | nibble
       continue
     }
@@ -41,7 +41,5 @@ func parse(encodingStr: String) -> Encoding? {
     return nil
   }
 
-  print("Reverse Encoding Split: \(revEncodingSplit)")
-  print("The Fucking encoding: \(String(encoding, radix: 16))")
   return Encoding(Encodings: [encoding])
 }

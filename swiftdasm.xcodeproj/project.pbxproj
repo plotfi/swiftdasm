@@ -12,6 +12,7 @@
 		9F751AC824C6A517003EA0A2 /* InstMatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F751AC724C6A517003EA0A2 /* InstMatcher.swift */; };
 		9F751ACA24C6A5CB003EA0A2 /* MatcherPatterns.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F751AC924C6A5CB003EA0A2 /* MatcherPatterns.swift */; };
 		9F751ACC24C6A601003EA0A2 /* dasm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F751ACB24C6A600003EA0A2 /* dasm.swift */; };
+		9FE396C924C81379006C7D2C /* tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE396C824C81379006C7D2C /* tests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -33,6 +34,7 @@
 		9F751AC724C6A517003EA0A2 /* InstMatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstMatcher.swift; sourceTree = "<group>"; };
 		9F751AC924C6A5CB003EA0A2 /* MatcherPatterns.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatcherPatterns.swift; sourceTree = "<group>"; };
 		9F751ACB24C6A600003EA0A2 /* dasm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dasm.swift; sourceTree = "<group>"; };
+		9FE396C824C81379006C7D2C /* tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +72,7 @@
 				9F751AC724C6A517003EA0A2 /* InstMatcher.swift */,
 				9F751AC924C6A5CB003EA0A2 /* MatcherPatterns.swift */,
 				9F751ACB24C6A600003EA0A2 /* dasm.swift */,
+				9FE396C824C81379006C7D2C /* tests.swift */,
 			);
 			path = swiftdasm;
 			sourceTree = "<group>";
@@ -137,6 +140,7 @@
 				9F2AF4C624C566EF00367F35 /* main.swift in Sources */,
 				9F751ACC24C6A601003EA0A2 /* dasm.swift in Sources */,
 				9F751AC824C6A517003EA0A2 /* InstMatcher.swift in Sources */,
+				9FE396C924C81379006C7D2C /* tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
