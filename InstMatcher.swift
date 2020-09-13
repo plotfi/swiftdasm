@@ -1,6 +1,5 @@
 import Foundation
 
-
 struct InstructionPattern {
   let Prefix: String
   let Mask: UInt64

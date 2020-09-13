@@ -33,7 +33,8 @@ func parse(encodingStr: String) -> Encoding? {
 
   var encoding: UInt64 = 0x0
   for nibbleStr in revEncodingSplit {
-    if let nibble = UInt64(String(nibbleStr.split(separator: "x")[0].reversed()), radix: 16) {
+    if let nibble =
+      UInt64(String(nibbleStr.split(separator: "x")[0].reversed()), radix: 16) {
       encoding = (encoding << 8) | nibble
       continue
     }
