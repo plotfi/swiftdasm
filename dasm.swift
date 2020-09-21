@@ -20,6 +20,10 @@ func logicImmDecode(encoding: Encoding) -> Instruction? {
   return Instruction(Opcode: "logicImm")
 }
 
+func movImmDecode(encoding: Encoding) -> Instruction? {
+  return Instruction(Opcode: "movImm")
+}
+
 func fallbackDecode(encoding: Encoding) -> Instruction? {
   return Instruction(Opcode: "FALLBACK")
 }

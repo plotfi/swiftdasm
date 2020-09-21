@@ -14,4 +14,5 @@ let tests = [
   // What is mte/memory taging?
   "  adds  x8, x0, #1            ; encoding: [0x08,0x04,0x00,0xb1]",
   "  eor  w0, w8, #0x7fff00      ; encoding: [0x00,0x39,0x18,0x52]",
+  "  movk    x0, #45055, lsl #48 ; encoding: [0xe0,0xff,0xf5,0xf2]",
 ]

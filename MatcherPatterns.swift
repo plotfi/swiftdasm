@@ -18,6 +18,9 @@ let AArch64Patterns = [
       InstructionPattern(
         Prefix: "LogicImm",
         Mask: 0xE07F_FFFF, Match: 0x1200_0000, Decode: logicImmDecode),
+      InstructionPattern(
+        Prefix: "MoveImm",
+        Mask: 0xE07F_FFFF, Match: 0x1280_0000, Decode: movImmDecode),
     ]
   )
 ]
