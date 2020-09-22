@@ -24,6 +24,14 @@ func movImmDecode(encoding: Encoding) -> Instruction? {
   return Instruction(Opcode: "movImm")
 }
 
+func bitFieldDecode(encoding: Encoding) -> Instruction? {
+  return Instruction(Opcode: "bitField")
+}
+
+func extractDecode(encoding: Encoding) -> Instruction? {
+  return Instruction(Opcode: "extract")
+}
+
 func fallbackDecode(encoding: Encoding) -> Instruction? {
   return Instruction(Opcode: "FALLBACK")
 }

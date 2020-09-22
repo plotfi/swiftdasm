@@ -2,7 +2,7 @@ import Foundation
 
 let AArch64Patterns = [
   GroupPattern(
-    GroupName: "DataProcessing",
+    GroupName: "DataProcessing - Immediate",
     Mask: 0xE3FF_FFFF, Match: 0x1000_0000,
     InstructionPatterns: [
       InstructionPattern(
@@ -21,6 +21,12 @@ let AArch64Patterns = [
       InstructionPattern(
         Prefix: "MoveImm",
         Mask: 0xE07F_FFFF, Match: 0x1280_0000, Decode: movImmDecode),
+      InstructionPattern(
+        Prefix: "Bitfield",
+        Mask: 0xE07F_FFFF, Match: 0x1300_0000, Decode: bitFieldDecode),
+      InstructionPattern(
+        Prefix: "Extract",
+        Mask: 0xE07F_FFFF, Match: 0x1300_0000, Decode: extractDecode),
     ]
   )
 ]

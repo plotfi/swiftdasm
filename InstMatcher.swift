@@ -16,6 +16,10 @@ struct GroupPattern {
 
 func matchEncoding(Pattern: InstructionPattern, Encoding: Encoding) -> Bool {
   if (Encoding.Encodings[0] & ~Pattern.Mask) == Pattern.Match {
+    print(String(format: "Masked:   %X", (Pattern.Mask)))
+    print(String(format: "Encoding: %X", (Encoding.Encodings[0])))
+    print(String(format: "Masked Encoding: %X", (Encoding.Encodings[0] & ~Pattern.Mask)))
+
     return true
   }
 
