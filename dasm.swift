@@ -1,3 +1,15 @@
+//
+//  Copyright © 2020 Puyan Lotfi. All rights reserved.
+//
+// Apache License v2.0 License.
+// https://github.com/plotfi/swiftdasm/LICENSE.txt for license information.
+// SPDX-License-Identifier: Apache-2.0
+//
+// dasm.swift
+// This file contains decode functions that disassemble instructions for each
+// AArch64 encoding group.
+//
+
 import Foundation
 
 /// Undefined Instruction

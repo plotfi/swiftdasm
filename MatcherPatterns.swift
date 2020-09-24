@@ -1,3 +1,17 @@
+//
+//  Copyright © 2020 Puyan Lotfi. All rights reserved.
+//
+// Apache License v2.0 License.
+// https://github.com/plotfi/swiftdasm/LICENSE.txt for license information.
+// SPDX-License-Identifier: Apache-2.0
+//
+// MatcherPatterns.swift
+// Used by InstMatcher.swift. This is a tree of instruction encoding groups and
+// instruction bit patterns. Each pattern consists of a mask, an expected bit
+// match (once the mask is applied), and decode function to call in the case where
+// ~Mask == Match.
+//
+
 import Foundation
 
 let AArch64Patterns = [

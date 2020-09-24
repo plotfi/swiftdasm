@@ -1,12 +1,14 @@
 //
-//  tests.swift
-//  swiftdasm
-//
-//  Created by Puyan Lotfi on 7/21/20.
 //  Copyright © 2020 Puyan Lotfi. All rights reserved.
 //
-
-import Foundation
+// Apache License v2.0 License.
+// https://github.com/plotfi/swiftdasm/LICENSE.txt for license information.
+// SPDX-License-Identifier: Apache-2.0
+//
+//.test.swift
+// This is a really lame set of encoding tests dumped out of the llvm assembler
+// by running: `llvm-mc -triple=aarch64--  -o - -show-encoding`
+//
 
 let tests = [
   // Data Processing -- Immediate

@@ -1,3 +1,15 @@
+//
+//  Copyright © 2020 Puyan Lotfi. All rights reserved.
+//
+// Apache License v2.0 License.
+// https://github.com/plotfi/swiftdasm/LICENSE.txt for license information.
+// SPDX-License-Identifier: Apache-2.0
+//
+// InstMatcher.swift
+// Walks the encoding groups and instruction bit patterns. Once a matching
+// pattern is found a proper decoder function in dasm.swift is called.
+//
+
 import Foundation
 
 struct InstructionPattern {

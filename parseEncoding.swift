@@ -1,3 +1,17 @@
+//
+//  Copyright © 2020 Puyan Lotfi. All rights reserved.
+//
+// Apache License v2.0 License.
+// https://github.com/plotfi/swiftdasm/LICENSE.txt for license information.
+// SPDX-License-Identifier: Apache-2.0
+//
+// parseEncoding.swift
+// For now, we are not decoding raw bits out of a __text section from an ELF or
+// Mach-O file. We are parsing the byte arrays for instruction encodings printed
+// out of llvm tools like llvm-mc or llc when passing -show-encoding or
+// -show-mc-encoding.
+//
+
 import Foundation
 
 struct Encoding {
