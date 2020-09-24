@@ -19,5 +19,6 @@ let tests = [
   "  mov  x0, #1152921435887370240  ; encoding: [0xe0,0x5f,0x5c,0xb2]",
   "  ubfiz x29, x30, #1, #1         ; encoding: [0xdd,0x03,0x7f,0xd3]",
   // Branches, Exception Generating and System instructions
-  "  b.eq    LBB3_6                 ; encoding: [0x60,0xff,0xff,0x54]",
+  "  b.eq LBB3_6                  ; encoding: [0x60,0xff,0xff,0x54]",
+  "  svc #0xa                     ; encoding: [0x41,0x01,0x00,0xd4]",
 ]

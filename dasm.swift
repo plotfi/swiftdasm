@@ -41,3 +41,7 @@ func extractDecode(encoding: Encoding) -> Instruction? {
 func bcondDecode(encoding: Encoding) -> Instruction? {
   return Instruction(Opcode: "B.cond")
 }
+
+func exceptionGenDecode(encoding: Encoding) -> Instruction? {
+  return Instruction(Opcode: "exceptionGen")
+}
