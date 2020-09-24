@@ -5,7 +5,6 @@ func udfDecode(Encoding: Encoding) -> Instruction? {
   return Instruction(Opcode: "UDF")
 }
 
-
 /// Data Processing Immediate Instructions
 
 func adrDecode(encoding: Encoding) -> Instruction? {
