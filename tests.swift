@@ -21,4 +21,5 @@ let tests = [
   // Branches, Exception Generating and System instructions
   "  b.eq LBB3_6                  ; encoding: [0x60,0xff,0xff,0x54]",
   "  svc #0xa                     ; encoding: [0x41,0x01,0x00,0xd4]",
+  "  nop                          ; encoding: [0x1f,0x20,0x03,0xd5]",
 ]

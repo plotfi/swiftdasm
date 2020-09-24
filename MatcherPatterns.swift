@@ -38,7 +38,10 @@ let AArch64Patterns = [
         Mask: 0x2BFF_FFEF, Match: 0x5400_0000, Decode: bcondDecode),
       InstructionPattern(
         Prefix: "exceptionGen",
-        Mask: 0x2BFF_FFFF, Match: 0xD400_0000, Decode: exceptionGenDecode)
+        Mask: 0x2BFF_FFFF, Match: 0xD400_0000, Decode: exceptionGenDecode),
+      InstructionPattern(
+        Prefix: "hint",
+        Mask: 0x2AFC_DFE0, Match: 0xD503_201F, Decode: hintDecode),
     ]
   )
 ]

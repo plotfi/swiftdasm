@@ -49,3 +49,15 @@ func matchEncodings(Encodings: [String]) {
     }
   }
 }
+
+func runTests() {
+  matchEncodings(Encodings: tests)
+}
+
+func runLoop() {
+  while true {
+    if let line = readLine(strippingNewline: true) {
+      matchEncodings(Encodings: [line])
+    }
+  }
+}

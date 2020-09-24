@@ -45,3 +45,7 @@ func bcondDecode(encoding: Encoding) -> Instruction? {
 func exceptionGenDecode(encoding: Encoding) -> Instruction? {
   return Instruction(Opcode: "exceptionGen")
 }
+
+func hintDecode(encoding: Encoding) -> Instruction? {
+  return Instruction(Opcode: "hint")
+}
