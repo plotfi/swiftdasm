@@ -28,5 +28,14 @@ let AArch64Patterns = [
         Prefix: "Extract",
         Mask: 0xE07F_FFFF, Match: 0x1300_0000, Decode: extractDecode),
     ]
+  ),
+  GroupPattern(
+    GroupName: "Branches, Exception Generating and System instructions",
+    Mask: 0xEBFF_FFFF, Match: 0x1400_0000,
+    InstructionPatterns: [
+      InstructionPattern(
+        Prefix: "B.cond",
+        Mask: 0xABFF_FFEF, Match: 0x5400_0000, Decode: bcondDecode),
+    ]
   )
 ]

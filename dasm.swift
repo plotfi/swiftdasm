@@ -1,8 +1,12 @@
 import Foundation
 
+/// Undefined Instruction
 func udfDecode(Encoding: Encoding) -> Instruction? {
   return Instruction(Opcode: "UDF")
 }
+
+
+/// Data Processing Immediate Instructions
 
 func adrDecode(encoding: Encoding) -> Instruction? {
   return Instruction(Opcode: "adr")
@@ -32,6 +36,8 @@ func extractDecode(encoding: Encoding) -> Instruction? {
   return Instruction(Opcode: "extract")
 }
 
-func fallbackDecode(encoding: Encoding) -> Instruction? {
-  return Instruction(Opcode: "FALLBACK")
+/// Branches Exception Generating and System Instructions
+
+func bcondDecode(encoding: Encoding) -> Instruction? {
+  return Instruction(Opcode: "B.cond")
 }
