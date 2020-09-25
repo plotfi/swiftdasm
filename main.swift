@@ -6,14 +6,27 @@
 // SPDX-License-Identifier: Apache-2.0
 //
 // main.swift
-// Runs tests and the dasm run loop.
-// TODO: Get @main working on Linux...
+// Runs tests and/or the dasm run loop.
 //
+
+import Foundation
 
 @main
 class SwiftDasm {
   static func main() {
-    runTests()
+
+    var RunTests = false
+    for Arg in CommandLine.arguments {
+      if Arg.lowercased() == "test" {
+        RunTests = true
+      }
+    }
+
+    if RunTests {
+      runTests()
+      return
+    }
+
     runLoop()
   }
 }
