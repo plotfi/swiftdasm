@@ -10,8 +10,10 @@
 // TODO: Get @main working on Linux...
 //
 
-func main() {
-  runTests()
-  runLoop()
+@main
+class SwiftDasm {
+  static func main() {
+    runTests()
+    runLoop()
+  }
 }
-main()
