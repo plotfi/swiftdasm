@@ -11,22 +11,16 @@
 
 import Foundation
 
-@main
-class SwiftDasm {
-  static func main() {
-
-    var RunTests = false
-    for Arg in CommandLine.arguments {
-      if Arg.lowercased() == "test" {
-        RunTests = true
-      }
-    }
-
-    if RunTests {
-      runTests()
-      return
-    }
-
-    runLoop()
+var RunTests = false
+for Arg in CommandLine.arguments {
+  if Arg.lowercased() == "test" {
+    RunTests = true
   }
 }
+
+if RunTests {
+  runTests()
+}
+
+runLoop()
+

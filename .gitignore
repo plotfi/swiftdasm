@@ -63,3 +63,9 @@ pythonenv*
 /clang/utils/analyzer/projects/*/PatchedSource
 /clang/utils/analyzer/projects/*/ScanBuildResults
 /clang/utils/analyzer/projects/*/RefScanBuildResults
+
+.DS_Store
+/.build
+/Packages
+/*.xcodeproj
+xcuserdata/
