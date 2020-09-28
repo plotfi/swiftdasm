@@ -58,7 +58,10 @@ let AArch64Patterns = [
         Mask: 0x2AFC_DFE0, Match: 0xD503_201F, Decode: hintDecode),
       InstructionPattern(
         Prefix: "barriers",
-        Mask: 0x2AFC_CFFF, Match: 0xD503_3000, Decode: barrierDecode)
+        Mask: 0x2AFC_CFFF, Match: 0xD503_3000, Decode: barrierDecode),
+      InstructionPattern(
+        Prefix: "pstate",
+        Mask: 0x2AFC_CFFF, Match: 0xD503_3000, Decode: pstateDecode),
     ]
   ),
 ]

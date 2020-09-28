@@ -62,5 +62,9 @@ func hintDecode(encoding: Encoding) -> Instruction? {
 }
 
 func barrierDecode(encoding: Encoding) -> Instruction? {
-  return Instruction(Opcode: "hint")
+  return Instruction(Opcode: "barrier")
+}
+
+func pstateDecode(encoding: Encoding) -> Instruction? {
+  return Instruction(Opcode: "pstate")
 }

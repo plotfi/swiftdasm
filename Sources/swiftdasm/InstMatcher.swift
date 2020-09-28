@@ -40,6 +40,8 @@ func matchEncoding(Pattern: InstructionPattern, Encoding: Encoding) -> Bool {
 
 func matchEncodings(Encodings: [String]) {
   for encodingStr in Encodings {
+    print("\n\n=================================")
+    print("Parsing encoding string: \(encodingStr)")
     if let encoding = parse(encodingStr: encodingStr) {
       for pattern in AArch64Patterns {
 
@@ -59,6 +61,7 @@ func matchEncodings(Encodings: [String]) {
         }
       }
     }
+    print("========= End Encoding ==========")
   }
 }
 
