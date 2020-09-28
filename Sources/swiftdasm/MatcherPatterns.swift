@@ -56,6 +56,9 @@ let AArch64Patterns = [
       InstructionPattern(
         Prefix: "hint",
         Mask: 0x2AFC_DFE0, Match: 0xD503_201F, Decode: hintDecode),
+      InstructionPattern(
+        Prefix: "barriers",
+        Mask: 0x2AFC_CFFF, Match: 0xD503_3000, Decode: barrierDecode)
     ]
   ),
 ]

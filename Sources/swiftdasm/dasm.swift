@@ -60,3 +60,7 @@ func exceptionGenDecode(encoding: Encoding) -> Instruction? {
 func hintDecode(encoding: Encoding) -> Instruction? {
   return Instruction(Opcode: "hint")
 }
+
+func barrierDecode(encoding: Encoding) -> Instruction? {
+  return Instruction(Opcode: "hint")
+}
