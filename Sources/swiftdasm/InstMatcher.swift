@@ -70,9 +70,11 @@ func runTests() {
 }
 
 func runLoop() {
-  while true {
-    if let line = readLine(strippingNewline: true) {
-      matchEncodings(Encodings: [line])
+  while let line = readLine(strippingNewline: true) {
+    if line.starts(with: "//") || line.isEmpty {
+      continue
     }
+
+    matchEncodings(Encodings: [line])
   }
 }
