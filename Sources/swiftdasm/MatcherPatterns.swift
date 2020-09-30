@@ -52,16 +52,16 @@ let AArch64Patterns = [
         Mask: 0x2BFF_FFEF, Match: 0x5400_0000, Decode: bcondDecode),
       InstructionPattern(
         Prefix: "exceptionGen",
-        Mask: 0x2BFF_FFFF, Match: 0xD400_0000, Decode: exceptionGenDecode),
+        Mask: 0x20FF_FFFF, Match: 0xD400_0000, Decode: exceptionGenDecode),
       InstructionPattern(
         Prefix: "hint",
-        Mask: 0x2AFC_DFE0, Match: 0xD503_201F, Decode: hintDecode),
+        Mask: 0x20FC_0FE0, Match: 0xD503_201F, Decode: hintDecode),
       InstructionPattern(
         Prefix: "barriers",
-        Mask: 0x2AFC_CFFF, Match: 0xD503_3000, Decode: barrierDecode),
+        Mask: 0x20FC_0FFF, Match: 0xD503_3000, Decode: barrierDecode),
       InstructionPattern(
         Prefix: "pstate",
-        Mask: 0x2AFC_CFFF, Match: 0xD503_3000, Decode: pstateDecode),
+        Mask: 0x20FC_0FFF, Match: 0xD500_4000, Decode: pstateDecode),
     ]
   ),
 ]
