@@ -40,7 +40,7 @@ let AArch64Patterns = [
         Mask: 0xE07F_FFFF, Match: 0x1300_0000, Decode: bitFieldDecode),
       InstructionPattern(
         Prefix: "Extract",
-        Mask: 0xE07F_FFFF, Match: 0x1300_0000, Decode: extractDecode),
+        Mask: 0xE07F_FFFF, Match: 0x1380_0000, Decode: extractDecode),
     ]
   ),
   GroupPattern(
