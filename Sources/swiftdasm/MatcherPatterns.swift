@@ -56,7 +56,7 @@ let AArch64Patterns = [
     InstructionPatterns: [
       InstructionPattern(Mask: 0x01FF_FFEF, Match: 0x5400_0000, Decode: { Encoding in Instruction(Encoding: Encoding, Opcode: "B.cond") }),
       InstructionPattern(Mask: 0x00FF_FFFF, Match: 0xD400_0000, Decode: { Encoding in Instruction(Encoding: Encoding, Opcode: "exceptionGen") }),
-      // TODO: InstructionPattern(Mask: 0x20FC_0FE0, Match: 0xD503_201F, Decode: { Encoding in Instruction(Encoding: Encoding, Opcode: "syswreg") }),
+      InstructionPattern(Mask: 0x0000_0FFF, Match: 0xD503_1000, Decode: { Encoding in Instruction(Encoding: Encoding, Opcode: "syswreg") }),
       InstructionPattern(Mask: 0x0000_0FE0, Match: 0xD503_201F, Decode: { Encoding in Instruction(Encoding: Encoding, Opcode: "hint") }),
       InstructionPattern(Mask: 0x0000_0FFF, Match: 0xD503_3000, Decode: { Encoding in Instruction(Encoding: Encoding, Opcode: "barrier") }),
       InstructionPattern(Mask: 0x0007_0FFF, Match: 0xD500_4000, Decode: { Encoding in Instruction(Encoding: Encoding, Opcode: "pstate") }),
