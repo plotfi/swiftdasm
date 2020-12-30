@@ -41,7 +41,7 @@ let AArch64Patterns = [
     GroupName: "DataProcessing - Immediate",
     Mask: 0xE3FF_FFFF, Match: 0x1000_0000,
     InstructionPatterns: [
-      InstructionPattern(Mask: 0xE0FF_FFFF, Match: 0x1000_0000, Decode: { Encoding in Instruction(Encoding: Encoding, Opcode: "adr") }),
+      InstructionPattern(Mask: 0xE07F_FFFF, Match: 0x1000_0000, Decode: { Encoding in Instruction(Encoding: Encoding, Opcode: "adr") }),
       InstructionPattern(Mask: 0xE07F_FFFF, Match: 0x1180_0000, Decode: { Encoding in Instruction(Encoding: Encoding, Opcode: "addSubImmWithTag") }),
       InstructionPattern(Mask: 0xE07F_FFFF, Match: 0x1100_0000, Decode: { Encoding in Instruction(Encoding: Encoding, Opcode: "addSubImm") }),
       InstructionPattern(Mask: 0xE07F_FFFF, Match: 0x1200_0000, Decode: { Encoding in Instruction(Encoding: Encoding, Opcode: "logicImm") }),
