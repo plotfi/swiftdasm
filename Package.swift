@@ -22,9 +22,8 @@ let package = Package(
             name: "swiftdasm",
             dependencies: [],
             path: "./Sources/swiftdasm",
-            sources: [ "dasm.swift", "MatcherPatterns.swift",
-                       "parseEncoding.swift", "InstMatcher.swift",
-                       "main.swift", "tests.swift" ]),
+            sources: [ "MatcherPatterns.swift", "parseEncoding.swift",
+                       "InstMatcher.swift", "main.swift", "tests.swift" ]),
         .testTarget(
             name: "swiftdasmTests",
             dependencies: ["swiftdasm"]),

@@ -11,16 +11,22 @@
 
 import Foundation
 
-var RunTests = false
+var Args = [String: String]()
 for Arg in CommandLine.arguments {
   if Arg.lowercased() == "test" {
-    RunTests = true
+    Args["RunTests"] = "true"
   }
 }
 
-if RunTests {
-  runTests()
+if Args.keys.contains("RunTests") {
+  match(Encodings: parse(Encodings: tests))
 }
 
-runLoop()
+while let line = readLine(strippingNewline: true) {
+  if line.starts(with: "//") || line.isEmpty {
+    continue
+  }
+
+  match(Encodings: parse(Encodings: [line]))
+}
 

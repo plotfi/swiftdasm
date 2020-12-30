@@ -12,21 +12,7 @@
 
 import Foundation
 
-struct InstructionPattern {
-  let Prefix: String
-  let Mask: UInt64
-  let Match: UInt64
-  let Decode: (Encoding) -> Instruction?
-}
-
-struct GroupPattern {
-  let GroupName: String
-  let Mask: UInt64
-  let Match: UInt64
-  let InstructionPatterns: [InstructionPattern]
-}
-
-func matchEncoding(Pattern: InstructionPattern, Encoding: Encoding) -> Bool {
+func match(_ Pattern: InstructionPattern, _ Encoding: InstructionEncoding) -> Bool {
   if (Encoding.Encodings[0] & ~Pattern.Mask) == Pattern.Match {
     print(String(format: "Masked:   %X", (Pattern.Mask)))
     print(String(format: "Encoding: %X", (Encoding.Encodings[0])))
@@ -38,43 +24,24 @@ func matchEncoding(Pattern: InstructionPattern, Encoding: Encoding) -> Bool {
   return false
 }
 
-func matchEncodings(Encodings: [String]) {
-  for encodingStr in Encodings {
-    print("\n\n=================================")
-    print("Parsing encoding string: \(encodingStr)")
-    if let encoding = parse(encodingStr: encodingStr) {
-      for pattern in AArch64Patterns {
+func match(Encodings: [InstructionEncoding]) {
+  for Encoding in Encodings {
+    for pattern in AArch64Patterns {
 
-        if (encoding.Encodings[0] & ~pattern.Mask) != pattern.Match {
+      if (Encoding.Encodings[0] & ~pattern.Mask) != pattern.Match {
+        continue
+      }
+
+      print("MATCH Group: \(pattern.GroupName)")
+      for Pattern in pattern.InstructionPatterns {
+        if !match(Pattern, Encoding) {
           continue
         }
 
-        print("MATCH Group: \(pattern.GroupName)")
-        for IP in pattern.InstructionPatterns {
-          if !matchEncoding(Pattern: IP, Encoding: encoding) {
-            continue
-          }
-
-          if let I = IP.Decode(encoding) {
-            print("\t\(I.Opcode)")
-          }
+        if let I = Pattern.Decode(Encoding) {
+          print("\t\(I.Opcode)")
         }
       }
     }
-    print("========= End Encoding ==========")
-  }
-}
-
-func runTests() {
-  matchEncodings(Encodings: tests)
-}
-
-func runLoop() {
-  while let line = readLine(strippingNewline: true) {
-    if line.starts(with: "//") || line.isEmpty {
-      continue
-    }
-
-    matchEncodings(Encodings: [line])
   }
 }

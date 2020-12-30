@@ -14,15 +14,7 @@
 
 import Foundation
 
-struct Encoding {
-  var Encodings: [UInt64]
-}
-
-struct Instruction {
-  var Opcode: String
-}
-
-func parse(encodingStr: String) -> Encoding? {
+func parse(_ Encoding: String) -> InstructionEncoding? {
 
   let revEncodingSplit = String(
     { (encoding: String) -> String in
@@ -31,7 +23,7 @@ func parse(encodingStr: String) -> Encoding? {
       } else {
         return encoding
       }
-    }(encodingStr)
+    }(Encoding)
     .replacingOccurrences(of: "[", with: ",")
     .replacingOccurrences(of: "]", with: " ")
     .reversed()
@@ -58,5 +50,19 @@ func parse(encodingStr: String) -> Encoding? {
     return nil
   }
 
-  return Encoding(Encodings: [encoding])
+  return InstructionEncoding(Encodings: [encoding])
+}
+
+func parse(Encodings: [String]) -> [InstructionEncoding] {
+  var Result = [InstructionEncoding]()
+
+  for Encoding in Encodings {
+    print("\n\n=================================")
+    print("Parsing encoding string: \(Encoding)")
+    if let IE = parse(Encoding) {
+      Result.append(IE)
+    }
+  }
+
+  return Result
 }

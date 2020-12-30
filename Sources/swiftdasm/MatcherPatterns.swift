@@ -14,54 +14,64 @@
 
 import Foundation
 
+struct InstructionEncoding {
+  var Encodings: [UInt64]
+}
+
+struct Instruction {
+  var Encoding : InstructionEncoding
+  var Opcode: String
+}
+
+struct InstructionPattern {
+  let Mask: UInt64
+  let Match: UInt64
+  let Decode: (InstructionEncoding) -> Instruction?
+}
+
+struct GroupPattern {
+  let GroupName: String
+  let Mask: UInt64
+  let Match: UInt64
+  let InstructionPatterns: [InstructionPattern]
+}
+
 let AArch64Patterns = [
   GroupPattern(
     GroupName: "DataProcessing - Immediate",
     Mask: 0xE3FF_FFFF, Match: 0x1000_0000,
     InstructionPatterns: [
-      InstructionPattern(
-        Prefix: "adr[p]",
-        Mask: 0xE0FF_FFFF, Match: 0x1000_0000,
-        Decode: adrDecode),
-      InstructionPattern(
-        Prefix: "AddSubImmWithTags",
-        Mask: 0xE07F_FFFF, Match: 0x1180_0000, Decode: addSubImmWithTagDecode),
-      InstructionPattern(
-        Prefix: "AddSubImm",
-        Mask: 0xE07F_FFFF, Match: 0x1100_0000, Decode: addSubImmDecode),
-      InstructionPattern(
-        Prefix: "LogicImm",
-        Mask: 0xE07F_FFFF, Match: 0x1200_0000, Decode: logicImmDecode),
-      InstructionPattern(
-        Prefix: "MoveImm",
-        Mask: 0xE07F_FFFF, Match: 0x1280_0000, Decode: movImmDecode),
-      InstructionPattern(
-        Prefix: "Bitfield",
-        Mask: 0xE07F_FFFF, Match: 0x1300_0000, Decode: bitFieldDecode),
-      InstructionPattern(
-        Prefix: "Extract",
-        Mask: 0xE07F_FFFF, Match: 0x1380_0000, Decode: extractDecode),
+      InstructionPattern(Mask: 0xE0FF_FFFF, Match: 0x1000_0000, Decode: { Encoding in Instruction(Encoding: Encoding, Opcode: "adr") }),
+      InstructionPattern(Mask: 0xE07F_FFFF, Match: 0x1180_0000, Decode: { Encoding in Instruction(Encoding: Encoding, Opcode: "addSubImmWithTag") }),
+      InstructionPattern(Mask: 0xE07F_FFFF, Match: 0x1100_0000, Decode: { Encoding in Instruction(Encoding: Encoding, Opcode: "addSubImm") }),
+      InstructionPattern(Mask: 0xE07F_FFFF, Match: 0x1200_0000, Decode: { Encoding in Instruction(Encoding: Encoding, Opcode: "logicImm") }),
+      InstructionPattern(Mask: 0xE07F_FFFF, Match: 0x1280_0000, Decode: { Encoding in Instruction(Encoding: Encoding, Opcode: "movImm") }),
+      InstructionPattern(Mask: 0xE07F_FFFF, Match: 0x1300_0000, Decode: { Encoding in Instruction(Encoding: Encoding, Opcode: "bitField") }),
+      InstructionPattern(Mask: 0xE07F_FFFF, Match: 0x1380_0000, Decode: { Encoding in Instruction(Encoding: Encoding, Opcode: "extract") }),
     ]
   ),
   GroupPattern(
     GroupName: "Branches, Exception Generating and System instructions",
     Mask: 0xEBFF_FFFF, Match: 0x1400_0000,
     InstructionPatterns: [
-      InstructionPattern(
-        Prefix: "B.cond",
-        Mask: 0x2BFF_FFEF, Match: 0x5400_0000, Decode: bcondDecode),
-      InstructionPattern(
-        Prefix: "exceptionGen",
-        Mask: 0x20FF_FFFF, Match: 0xD400_0000, Decode: exceptionGenDecode),
-      InstructionPattern(
-        Prefix: "hint",
-        Mask: 0x20FC_0FE0, Match: 0xD503_201F, Decode: hintDecode),
-      InstructionPattern(
-        Prefix: "barriers",
-        Mask: 0x20FC_0FFF, Match: 0xD503_3000, Decode: barrierDecode),
-      InstructionPattern(
-        Prefix: "pstate",
-        Mask: 0x20FC_0FFF, Match: 0xD500_4000, Decode: pstateDecode),
+      InstructionPattern(Mask: 0x2BFF_FFEF, Match: 0x5400_0000, Decode: { Encoding in Instruction(Encoding: Encoding, Opcode: "B.cond") }),
+      InstructionPattern(Mask: 0x20FF_FFFF, Match: 0xD400_0000, Decode: { Encoding in Instruction(Encoding: Encoding, Opcode: "exceptionGen") }),
+      InstructionPattern(Mask: 0x20FC_0FE0, Match: 0xD503_201F, Decode: { Encoding in Instruction(Encoding: Encoding, Opcode: "hint") }),
+      InstructionPattern(Mask: 0x20FC_0FFF, Match: 0xD503_3000, Decode: { Encoding in Instruction(Encoding: Encoding, Opcode: "barrier") }),
+      InstructionPattern(Mask: 0x20FC_0FFF, Match: 0xD500_4000, Decode: { Encoding in Instruction(Encoding: Encoding, Opcode: "pstate") }),
+      InstructionPattern(Mask: 0x20E7_FFFF, Match: 0xD508_0000, Decode: { Encoding in Instruction(Encoding: Encoding, Opcode: "system") }),
+      InstructionPattern(Mask: 0x20E7_FFFF, Match: 0xD518_0000, Decode: { Encoding in Instruction(Encoding: Encoding, Opcode: "sysregmov") }),
+      InstructionPattern(Mask: 0x28FF_FFFF, Match: 0xD600_0000, Decode: { Encoding in Instruction(Encoding: Encoding, Opcode: "uncondbr") }),
+      InstructionPattern(Mask: 0xCBFF_FFFF, Match: 0x1400_0000, Decode: { Encoding in Instruction(Encoding: Encoding, Opcode: "uncondbrimm") }),
+      InstructionPattern(Mask: 0xC9FF_FFFF, Match: 0x3400_0000, Decode: { Encoding in Instruction(Encoding: Encoding, Opcode: "compbrimm") }),
+      InstructionPattern(Mask: 0xC9FF_FFFF, Match: 0x3600_0000, Decode: { Encoding in Instruction(Encoding: Encoding, Opcode: "testbrimm") }),
+    ]
+  ),
+  GroupPattern(
+    GroupName: "Load and Stores",
+    Mask: 0xF5FF_FFFF, Match: 0x0800_0000,
+    InstructionPatterns: [
+      InstructionPattern(Mask: 0xF7FF_FFFF, Match: 0x0800_0000, Decode: { Encoding in Instruction(Encoding: Encoding, Opcode: "loadstore") }),
     ]
   ),
 ]
