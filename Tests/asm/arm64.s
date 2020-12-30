@@ -5,7 +5,6 @@ LBB3_6:
 //       I want to keep this label in case this is run through llvm-mc
 // CHECK: =================================
 // CHECK: Parsing encoding string: LBB3_6:
-// CHECK: ========= End Encoding ==========
 
 // CHECK: =================================
 // CHECK-NEXT: Parsing encoding string:
@@ -127,3 +126,63 @@ clrex // encoding: [0x5f,0x3f,0x03,0xd5]
 // CHECK-NEXT: ========= End Encoding ==========
 cfinv // encoding: [0x1f,0x40,0x00,0xd5]
 
+// CHECK: =================================
+// CHECK-NEXT: Parsing encoding string:
+// CHECK-NEXT: MATCH Group: Branches, Exception Generating and System instructions
+// CHECK-NEXT: Masked:
+// CHECK-NEXT: Encoding:
+// CHECK-NEXT: Masked Encoding:
+// CHECK-NEXT:         system
+// CHECK-NEXT: ========= End Encoding ==========
+sysl    x1, #0, c15, c15, #2    // encoding: [0x41,0xff,0x28,0xd5]
+
+// CHECK: =================================
+// CHECK-NEXT: Parsing encoding string:
+// CHECK-NEXT: MATCH Group: Branches, Exception Generating and System instructions
+// CHECK-NEXT: Masked:
+// CHECK-NEXT: Encoding:
+// CHECK-NEXT: Masked Encoding:
+// CHECK-NEXT:         sysregmov
+// CHECK-NEXT: ========= End Encoding ==========
+mrs     x0, AMEVCNTVOFF19_EL2   // encoding: [0x20,0xdb,0x3c,0xd5]
+
+
+// CHECK: =================================
+// CHECK-NEXT: Parsing encoding string:
+// CHECK-NEXT: MATCH Group: Branches, Exception Generating and System instructions
+// CHECK-NEXT: Masked:
+// CHECK-NEXT: Encoding:
+// CHECK-NEXT: Masked Encoding:
+// CHECK-NEXT:         uncondbr
+// CHECK-NEXT: ========= End Encoding ==========
+eret                                // encoding: [0xe0,0x03,0x9f,0xd6]
+
+// CHECK: =================================
+// CHECK-NEXT: Parsing encoding string:
+// CHECK-NEXT: MATCH Group: Branches, Exception Generating and System instructions
+// CHECK-NEXT: Masked:
+// CHECK-NEXT: Encoding:
+// CHECK-NEXT: Masked Encoding:
+// CHECK-NEXT:         uncondbrimm
+// CHECK-NEXT: ========= End Encoding ==========
+bl      #0                      // encoding: [0x00,0x00,0x00,0x94]
+
+// CHECK: =================================
+// CHECK-NEXT: Parsing encoding string:
+// CHECK-NEXT: MATCH Group: Branches, Exception Generating and System instructions
+// CHECK-NEXT: Masked:
+// CHECK-NEXT: Encoding:
+// CHECK-NEXT: Masked Encoding:
+// CHECK-NEXT:         compbrimm
+// CHECK-NEXT: ========= End Encoding =========
+cbz        w20, #1048572           ; encoding: [0xf4,0xff,0x7f,0x34]
+
+// CHECK: =================================
+// CHECK-NEXT: Parsing encoding string:
+// CHECK-NEXT: MATCH Group: Branches, Exception Generating and System instructions
+// CHECK-NEXT: Masked:
+// CHECK-NEXT: Encoding:
+// CHECK-NEXT: Masked Encoding:
+// CHECK-NEXT:         testbrimm
+// CHECK-NEXT: ========= End Encoding ========
+tbz        w3, #5, #32764          ; encoding: [0xe3,0xff,0x2b,0x36]

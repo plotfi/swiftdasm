@@ -5,16 +5,11 @@
 // https://github.com/plotfi/swiftdasm/LICENSE.txt for license information.
 // SPDX-License-Identifier: Apache-2.0
 //
-// main.swift
-// Runs tests and/or the dasm run loop.
-//
 
 import Foundation
 
 while let line = readLine(strippingNewline: true) {
-  if line.starts(with: "//") || line.isEmpty {
-    continue
+  if !line.starts(with: "//") && !line.isEmpty {
+    match(Encodings: parse(Encodings: [line]))
   }
-
-  match(Encodings: parse(Encodings: [line]))
 }

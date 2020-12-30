@@ -54,17 +54,18 @@ let AArch64Patterns = [
     GroupName: "Branches, Exception Generating and System instructions",
     Mask: 0xEBFF_FFFF, Match: 0x1400_0000,
     InstructionPatterns: [
-      InstructionPattern(Mask: 0x2BFF_FFEF, Match: 0x5400_0000, Decode: { Encoding in Instruction(Encoding: Encoding, Opcode: "B.cond") }),
-      InstructionPattern(Mask: 0x20FF_FFFF, Match: 0xD400_0000, Decode: { Encoding in Instruction(Encoding: Encoding, Opcode: "exceptionGen") }),
-      InstructionPattern(Mask: 0x20FC_0FE0, Match: 0xD503_201F, Decode: { Encoding in Instruction(Encoding: Encoding, Opcode: "hint") }),
-      InstructionPattern(Mask: 0x20FC_0FFF, Match: 0xD503_3000, Decode: { Encoding in Instruction(Encoding: Encoding, Opcode: "barrier") }),
-      InstructionPattern(Mask: 0x20FC_0FFF, Match: 0xD500_4000, Decode: { Encoding in Instruction(Encoding: Encoding, Opcode: "pstate") }),
-      InstructionPattern(Mask: 0x20E7_FFFF, Match: 0xD508_0000, Decode: { Encoding in Instruction(Encoding: Encoding, Opcode: "system") }),
-      InstructionPattern(Mask: 0x20E7_FFFF, Match: 0xD518_0000, Decode: { Encoding in Instruction(Encoding: Encoding, Opcode: "sysregmov") }),
-      InstructionPattern(Mask: 0x28FF_FFFF, Match: 0xD600_0000, Decode: { Encoding in Instruction(Encoding: Encoding, Opcode: "uncondbr") }),
-      InstructionPattern(Mask: 0xCBFF_FFFF, Match: 0x1400_0000, Decode: { Encoding in Instruction(Encoding: Encoding, Opcode: "uncondbrimm") }),
-      InstructionPattern(Mask: 0xC9FF_FFFF, Match: 0x3400_0000, Decode: { Encoding in Instruction(Encoding: Encoding, Opcode: "compbrimm") }),
-      InstructionPattern(Mask: 0xC9FF_FFFF, Match: 0x3600_0000, Decode: { Encoding in Instruction(Encoding: Encoding, Opcode: "testbrimm") }),
+      InstructionPattern(Mask: 0x01FF_FFEF, Match: 0x5400_0000, Decode: { Encoding in Instruction(Encoding: Encoding, Opcode: "B.cond") }),
+      InstructionPattern(Mask: 0x00FF_FFFF, Match: 0xD400_0000, Decode: { Encoding in Instruction(Encoding: Encoding, Opcode: "exceptionGen") }),
+      // TODO: InstructionPattern(Mask: 0x20FC_0FE0, Match: 0xD503_201F, Decode: { Encoding in Instruction(Encoding: Encoding, Opcode: "syswreg") }),
+      InstructionPattern(Mask: 0x0000_0FE0, Match: 0xD503_201F, Decode: { Encoding in Instruction(Encoding: Encoding, Opcode: "hint") }),
+      InstructionPattern(Mask: 0x0000_0FFF, Match: 0xD503_3000, Decode: { Encoding in Instruction(Encoding: Encoding, Opcode: "barrier") }),
+      InstructionPattern(Mask: 0x0007_0FFF, Match: 0xD500_4000, Decode: { Encoding in Instruction(Encoding: Encoding, Opcode: "pstate") }),
+      InstructionPattern(Mask: 0x0027_FFFF, Match: 0xD508_0000, Decode: { Encoding in Instruction(Encoding: Encoding, Opcode: "system") }),
+      InstructionPattern(Mask: 0x002F_FFFF, Match: 0xD510_0000, Decode: { Encoding in Instruction(Encoding: Encoding, Opcode: "sysregmov") }),
+      InstructionPattern(Mask: 0x01FF_FFFF, Match: 0xD600_0000, Decode: { Encoding in Instruction(Encoding: Encoding, Opcode: "uncondbr") }),
+      InstructionPattern(Mask: 0x83FF_FFFF, Match: 0x1400_0000, Decode: { Encoding in Instruction(Encoding: Encoding, Opcode: "uncondbrimm") }),
+      InstructionPattern(Mask: 0x81FF_FFFF, Match: 0x3400_0000, Decode: { Encoding in Instruction(Encoding: Encoding, Opcode: "compbrimm") }),
+      InstructionPattern(Mask: 0x81FF_FFFF, Match: 0x3600_0000, Decode: { Encoding in Instruction(Encoding: Encoding, Opcode: "testbrimm") }),
     ]
   ),
   GroupPattern(
@@ -107,5 +108,6 @@ func match(Encodings: [InstructionEncoding]) {
         }
       }
     }
+    print("========= End Encoding ==========")
   }
 }
