@@ -18,4 +18,3 @@ while let line = readLine(strippingNewline: true) {
 
   match(Encodings: parse(Encodings: [line]))
 }
-
