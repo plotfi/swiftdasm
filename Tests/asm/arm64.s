@@ -186,3 +186,13 @@ cbz        w20, #1048572           ; encoding: [0xf4,0xff,0x7f,0x34]
 // CHECK-NEXT:         testbrimm
 // CHECK-NEXT: ========= End Encoding ========
 tbz        w3, #5, #32764          ; encoding: [0xe3,0xff,0x2b,0x36]
+
+// CHECK: =================================
+// CHECK-NEXT: Parsing encoding string:
+// CHECK-NEXT: MATCH Group: Branches, Exception Generating and System instructions
+// CHECK-NEXT: Masked:
+// CHECK-NEXT: Encoding:
+// CHECK-NEXT: Masked Encoding:
+// CHECK-NEXT:         syswreg
+// CHECK-NEXT: ========= End Encoding ==========
+wfet    x17  // encoding: [0x11,0x10,0x03,0xd5]
