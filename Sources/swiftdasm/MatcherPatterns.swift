@@ -38,7 +38,7 @@ struct GroupPattern {
 
 let AArch64Patterns = [
   GroupPattern(
-    GroupName: "DataProcessing - Immediate",
+    GroupName: "Data Processing -- Immediate",
     Mask: 0xE3FF_FFFF, Match: 0x1000_0000,
     InstructionPatterns: [
       InstructionPattern(Mask: 0xE07F_FFFF, Match: 0x1000_0000, Decode: { Encoding in Instruction(Encoding: Encoding, Opcode: "adr") }),
@@ -69,7 +69,7 @@ let AArch64Patterns = [
     ]
   ),
   GroupPattern(
-    GroupName: "Load and Stores",
+    GroupName: "Loads and Stores",
     Mask: 0xF5FF_FFFF, Match: 0x0800_0000,
     InstructionPatterns: [
       InstructionPattern(Mask: 0x4040_FFFF, Match: 0x0C00_0000, Decode: { Encoding in Instruction(Encoding: Encoding, Opcode: "loadstoresimdmulti") }),
@@ -92,6 +92,18 @@ let AArch64Patterns = [
       InstructionPattern(Mask: 0xC4DF_F3FF, Match: 0x3820_0800, Decode: { Encoding in Instruction(Encoding: Encoding, Opcode: "loadstoreregregoff") }),
       InstructionPattern(Mask: 0xC4DF_FBFF, Match: 0x3820_0400, Decode: { Encoding in Instruction(Encoding: Encoding, Opcode: "loadstoreregpac") }),
       InstructionPattern(Mask: 0xC4FF_FFFF, Match: 0x3900_0000, Decode: { Encoding in Instruction(Encoding: Encoding, Opcode: "loadstoreregunsignimm") }),
+    ]
+  ),
+  GroupPattern(
+    GroupName: "Data Processing -- Register",
+    Mask: 0xF1FF_FFFF, Match: 0x0A00_0000,
+    InstructionPatterns: [
+    ]
+  ),
+  GroupPattern(
+    GroupName: "Data Processing -- Scalar Floating-Point and Advanced SIMD",
+    Mask: 0xF1FF_FFFF, Match: 0x0E00_0000,
+    InstructionPatterns: [
     ]
   ),
 ]
