@@ -22,7 +22,7 @@ let package = Package(
             name: "swiftdasm",
             dependencies: [],
             path: "./Sources/swiftdasm",
-            sources: [ "MatcherPatterns.swift", "ParseEncoding.swift",
+            sources: [ "MatcherPatterns.swift", "ParseEncoding.swift", "hint.swift",
                        "main.swift" ]),
     ]
 )

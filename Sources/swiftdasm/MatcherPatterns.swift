@@ -14,6 +14,7 @@
 
 import Foundation
 
+// This is dumb for an arm64 dasm because everything is 32bit.
 struct InstructionEncoding {
   var Encodings: [UInt64]
 }
@@ -57,7 +58,7 @@ let AArch64Patterns = [
       InstructionPattern(Mask: 0x01FF_FFEF, Match: 0x5400_0000, Decode: { Encoding in Instruction(Encoding: Encoding, Opcode: "B.cond") }),
       InstructionPattern(Mask: 0x00FF_FFFF, Match: 0xD400_0000, Decode: { Encoding in Instruction(Encoding: Encoding, Opcode: "exceptionGen") }),
       InstructionPattern(Mask: 0x0000_0FFF, Match: 0xD503_1000, Decode: { Encoding in Instruction(Encoding: Encoding, Opcode: "syswreg") }),
-      InstructionPattern(Mask: 0x0000_0FE0, Match: 0xD503_201F, Decode: { Encoding in Instruction(Encoding: Encoding, Opcode: "hint") }),
+      InstructionPattern(Mask: 0x0000_0FE0, Match: 0xD503_201F, Decode: ParseHint),
       InstructionPattern(Mask: 0x0000_0FFF, Match: 0xD503_3000, Decode: { Encoding in Instruction(Encoding: Encoding, Opcode: "barrier") }),
       InstructionPattern(Mask: 0x0007_0FFF, Match: 0xD500_4000, Decode: { Encoding in Instruction(Encoding: Encoding, Opcode: "pstate") }),
       InstructionPattern(Mask: 0x0027_FFFF, Match: 0xD508_0000, Decode: { Encoding in Instruction(Encoding: Encoding, Opcode: "system") }),
